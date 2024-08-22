@@ -1,0 +1,6 @@
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/junegunn/fzf
+[submodule "deps/nvim"]
+	path = deps/nvim
+	url = https://github.com/neovim/neovim

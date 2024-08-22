@@ -1,0 +1,54 @@
+---
+- name: Bootstrap development environment
+  hosts: localhost
+  tasks:
+    - name: Update all submodules
+      tags:
+        - submodules
+        - nvim
+      command:
+        cmd: git submodule update --force --init --recursive --jobs 4
+      changed_when: false
+
+    - name: Stow
+      tags: stow
+      import_role:
+        name: stow
+    
+    - name: Command line
+      tags: cli
+      import_role:
+        name: cli
+
+    - name: Neovim
+      tags: nvim
+      import_role:
+        name: nvim
+    
+    - name: Rust
+      tags: rust
+      import_role:
+        name: rust
+
+    - name: Go
+      tags: go
+      import_role:
+        name: go
+
+    - name: Linux Desktop
+      tags: linux
+      import_role:
+        name: linux-desktop
+      when: >
+        (not 'CI' in ansible_env) and
+        (ansible_system is search("Linux")) and
+        (not ansible_kernel is search("microsoft"))
+    
+    - name: Install qemu-guest-agent
+      tags: qemu
+      apt:
+        name: qemu-guest-agent
+        state: present
+      when: >
+        (ansible_distribution == "Ubuntu" or ansible_distribution == "Pop!_OS") and
+        (ansible_virtualization_role == "guest")

@@ -1,0 +1,4 @@
+---
+- name: Install rust in Ubuntu
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Pop!_OS"

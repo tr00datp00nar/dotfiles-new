@@ -1,0 +1,14 @@
+---
+- name: Setup Flatpak and apps
+  import_tasks: flatpak.yml
+
+- name: Setup apt packages
+  import_tasks: apt.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Pop!_OS"
+
+- name: Configure GNOME
+  import_tasks: gnome.yml
+
+- name: Configure Pop!_OS
+  import_tasks: pop_os.yml
+  when: ansible_distribution == "Pop!_OS"

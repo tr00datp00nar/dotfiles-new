@@ -1,0 +1,35 @@
+---
+- name: Create directory ~/.local/bin/
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: 0755
+
+- name: Install zsh
+  import_tasks: zsh.yml
+
+- name: Install CLI tools in Ubuntu
+  become: true
+  apt:
+    name:
+      - tmux
+      - ripgrep
+      - fd-find
+      - jq
+      - htop
+      - python3-pip
+      - unzip
+    state: present
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Pop!_OS"
+
+- name: Install fzf
+  command:
+    cmd: ./install --bin
+    chdir: "{{ ansible_env.HOME }}/.fzf"
+    creates: "{{ ansible_env.HOME }}/.fzf/bin/fzf"
+
+- name: Install bat
+  import_tasks: bat.yml
+
+- name: Install zoxide
+  import_tasks: zoxide.yml

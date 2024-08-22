@@ -1,0 +1,50 @@
+---
+- name: Configure clock alignment
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-cosmic/clock-alignment"
+    value: "CENTER"
+
+- name: Configure overlay key action
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-cosmic/overlay-key-action"
+    value: "WORKSPACES"
+
+- name: Configure show app menu
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-cosmic/show-application-menu"
+    value: "false"
+  
+- name: Configure show app button
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-cosmic/show-applications-button"
+    value: "false"
+
+- name: Configure show workspaces button
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-cosmic/show-workspaces-button"
+    value: "false"
+
+- name: Configure workspace picker location
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-cosmic/workspace-picker-left"
+    value: "false"
+
+- name: Configure activate-launcher
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-shell/activate-launcher"
+    value: "['<Super>slash']"
+
+- name: Configure tiled window gap-inner
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-shell/gap-inner"
+    value: "0"
+
+- name: Configure tiled window gap-outer
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-shell/gap-outer"
+    value: "0"
+
+- name: Configure tile by default
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/pop-shell/tile-by-default"
+    value: "true"

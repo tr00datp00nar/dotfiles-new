@@ -1,0 +1,31 @@
+---
+- name: Add universe repository
+  ansible.builtin.apt_repository:
+    repo: 'deb http://archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} universe'
+    state: present
+
+- name: Add Ulauncher Repository
+  ansible.builtin.apt_repository:
+    repo: 'ppa:agornostal/ulauncher'
+
+- name: Add Brave Browser GPG key and repository
+  block:
+    - name: Add brave browser GPG key
+      ansible.builtin.get_url:
+        url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        dest: /usr/share/keyrings/brave-browser-archive-keyring.gpg
+
+    - name: Add brave browser repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"
+        state: present
+
+- name: Install packages with apt
+  ansible.builtin.apt:
+    pkg:
+    - git
+    - curl
+    - wget
+    - brave-browser
+    - ulauncher
+  

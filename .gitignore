@@ -1,0 +1,4 @@
+.vscode
+.config
+scripts/
+velociraptor_facts.json
