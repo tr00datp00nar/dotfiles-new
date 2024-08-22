@@ -1,6 +1,6 @@
 - name: Download go tar file
   ansible.builtin.command:
-    cmd: wget https://go.dev/dl/go{{version}}.linux-amd64.tar.gz
+    cmd: wget https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz
  
 - name: Delete previous installation
   ansible.builtin.command:
@@ -9,12 +9,12 @@
  
 - name: Extract and move new go folder to /usr/local
   ansible.builtin.command:
-    cmd: tar -C /usr/local -xzf go{{version}}.linux-amd64.tar.gz
+    cmd: tar -C /usr/local -xzf go{{ go_version }}.linux-amd64.tar.gz
   become: true
  
 - name: Delete downloaded tar file
   ansible.builtin.command:
-    cmd: rm -rf go{{version}}.linux-amd64.tar.gz*
+    cmd: rm -rf go{{ go_version}}.linux-amd64.tar.gz*
  
 - name: Add go binary path to ~/.profile
   lineinfile:
