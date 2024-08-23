@@ -1,0 +1,32 @@
+bat_version: 0.24.0
+zoxide_version: 0.9.1
+
+### GOLANG ###
+# Go language SDK version number
+golang_version: '1.23.0'
+# Mirror to download the Go language SDK redistributable package from
+golang_mirror: 'https://storage.googleapis.com/golang'
+# Base installation directory the Go language SDK distribution
+golang_install_dir: '/opt/go/{{ golang_version }}'
+# Directory to store files downloaded for Go language SDK installation
+golang_download_dir: "{{ x_ansible_download_dir | default(ansible_facts.env.HOME + '/.ansible/tmp/downloads') }}"
+# Location for GOPATH environment variable
+golang_gopath:
+# SHA256 sum for the redistributable package (i.e. "go{{ golang_version }}.linux-amd64.tar.gz")
+golang_redis_sha256sum: '905a297f19ead44780548933e0ff1a1b86e8327bb459e92f9c0012569f76f5e3'
+
+
+### RUST ###
+rust_version: 1.31.0
+rust_update: true
+build_rust_from_source: false
+rust_install_clean: false
+# Cargo
+cargo_items:
+  - name: topgrade
+    binary: topgrade
+  - name: ncspot
+    binary: ncspot
+# Configuration
+shell_profiles:
+- .profile

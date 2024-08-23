@@ -4,5 +4,5 @@ collections:
 
 roles:
   - name: petermosmans.customize-gnome
-#   - name: geerlingguy.nodejs
-#     version: 6.1.1
+  - name: gantsign.golang
+  - name: fubarhouse.rust

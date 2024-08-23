@@ -43,7 +43,7 @@
     path: deps/nvim/build
   register: nvim_build
 
-- name: Build nvim release version in Linux
+- name: Build nvim nightly version in Linux
   community.general.make:
     chdir: deps/nvim
     params:
