@@ -20,12 +20,26 @@
         repo: "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"
         state: present
 
+- name: Install volian scar repository and gpg key
+  block:
+  - name: Add volian scar repository
+    ansible.builtin.apt_repository:
+      repo: "deb [arch=amd64,arm64,armhf] http://deb.volian.org/volian/ scar main" 
+      filename: "volian-archive-scar-unstable.list"
+  - name: Add volian scar gpg key
+    ansible.builtin.get_url:
+      url: https://gitlab.com/volian/volian-archive/-/raw/main/volian-archive-scar-unstable.gpg
+      dest: /usr/share/keyrings/volian-archive-scar-unstable.gpg
+  
 - name: Install packages with apt
   ansible.builtin.apt:
+    update_cache: true
     pkg:
     - git
     - curl
     - wget
     - brave-browser
     - ulauncher
+    - psensor
+    - nala
   
