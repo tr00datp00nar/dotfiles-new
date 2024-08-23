@@ -38,48 +38,46 @@
     value: "false"
 
 - name: Configure gnome extensions
-  ansible.builtin.import_role:
-    name: petermosmans.customize-gnome
-  vars:
-    gnome_extensions:
-    - id: 4812
-      enable: yes
-    - id: 16
-      enable: yes
-    - id: 5090
-      enable: yes
+  block:
+  - name: Install gnome extensions
+    ansible.builtin.import_role:
+      name: petermosmans.customize-gnome
+    vars:
+      gnome_extensions:
+      - id: 4812
+        enable: yes
+      - id: 16
+        enable: yes
+      - id: 5090
+        enable: yes
 
-- name: Configure space-bar move to workspace shortcuts
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/space-bar/shortcuts/enable-move-to-workspace-shortcuts"
-    value: "true"
+  - name: Configure space-bar move to workspace shortcuts
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/space-bar/shortcuts/enable-move-to-workspace-shortcuts"
+      value: "true"
 
-- name: Configure space-bar smart workspace names
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/space-bar/behavior/smart-workspace-names"
-    value: "false"
+  - name: Configure space-bar smart workspace names
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/space-bar/behavior/smart-workspace-names"
+      value: "false"
 
-- name: Configure space-bar scroll-wheel
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/space-bar/behavior/scroll-wheel"
-    value: "disabled"
-    
-- name: Configure auto-move-windows application linux-desktop
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/auto-move-windows/application-list"
-    value: "['steam.desktop:4', 'com.spotify.Client.desktop:3', 'brave-browser.desktop:1']"
+  - name: Configure space-bar scroll-wheel
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/space-bar/behavior/scroll-wheel"
+      value: "disabled"
+      
+  - name: Configure auto-move-windows application linux-desktop
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/auto-move-windows/application-list"
+      value: "['steam.desktop:4', 'com.spotify.Client.desktop:3', 'brave-browser.desktop:1']"
 
-- name: Configure wallpaper-switcher frequency
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/WallpaperSwitcher/frequency"
-    value: "60"
+  - name: Configure wallpaper-switcher frequency
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/WallpaperSwitcher/frequency"
+      value: "60"
 
-- name: Configure wallpaper-switcher switching mode
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/WallpaperSwitcher/switching-mode"
-    value: "1"
-
-- name: Configure wallpaper-switcher wallpaper-path
-  community.general.dconf:
-    key: "/org/gnome/shell/extensions/WallpaperSwitcher/wallpaper-path"
-    value: "{ ansible_env.HOME }/pictures/wallpapers/waifus"
+  - name: Configure wallpaper-switcher switching mode
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/WallpaperSwitcher/switching-mode"
+      value: "1"
+  when: ansible_distribution == "Pop!_OS"
