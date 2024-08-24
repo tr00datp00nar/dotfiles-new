@@ -13,13 +13,3 @@
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
-
-- name: Install apps with Flatpak
-  become: true
-  community.general.flatpak:
-    name:
-      - com.bitwarden.desktop
-      - com.discordapp.Discord
-      - com.spotify.Client
-    state: present
-    method: user
