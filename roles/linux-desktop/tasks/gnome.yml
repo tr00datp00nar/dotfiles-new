@@ -6,6 +6,7 @@
     state: present
 
 - name: Install dconf in Ubuntu
+  become: true
   apt:
     name:
       - dconf-cli
