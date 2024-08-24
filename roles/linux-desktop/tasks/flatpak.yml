@@ -15,6 +15,7 @@
     method: user
 
 - name: Install apps with Flatpak
+  become: true
   community.general.flatpak:
     name:
       - com.bitwarden.desktop

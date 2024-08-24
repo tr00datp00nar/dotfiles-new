@@ -1,10 +1,12 @@
 ---
 - name: Add universe repository
+  become: true
   ansible.builtin.apt_repository:
     repo: 'deb http://archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} universe'
     state: present
 
 - name: Add Ulauncher Repository
+  become: true
   ansible.builtin.apt_repository:
     repo: 'ppa:agornostal/ulauncher'
 
@@ -16,6 +18,7 @@
         dest: /usr/share/keyrings/brave-browser-archive-keyring.gpg
 
     - name: Add brave browser repository
+      become: true
       ansible.builtin.apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"
         state: present
@@ -23,6 +26,7 @@
 - name: Install volian scar repository and gpg key
   block:
   - name: Add volian scar repository
+    become: true
     ansible.builtin.apt_repository:
       repo: "deb [arch=amd64,arm64,armhf] http://deb.volian.org/volian/ scar main" 
       filename: "volian-archive-scar-unstable.list"
@@ -32,6 +36,7 @@
       dest: /usr/share/keyrings/volian-archive-scar-unstable.gpg
   
 - name: Install packages with apt
+  become: true
   ansible.builtin.apt:
     update_cache: true
     pkg:
