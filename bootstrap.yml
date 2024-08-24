@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap development environment
-  hosts: all
+  hosts: local
   tasks:
     - name: Update all submodules
       tags:
@@ -26,6 +26,7 @@
         name: nvim
     
     - name: Rust
+      become: true
       tags: rust
       import_role:
         name: fubarhouse.rust

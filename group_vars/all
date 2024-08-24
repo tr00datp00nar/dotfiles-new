@@ -22,11 +22,11 @@ rust_update: true
 build_rust_from_source: false
 rust_install_clean: false
 # Cargo
-cargo_items:
-  - name: topgrade
-    binary: topgrade
-  - name: ncspot
-    binary: ncspot
+# cargo_items:
+#   - name: topgrade
+#     binary: topgrade
+#   - name: ncspot
+#     binary: ncspot
 # Configuration
 shell_profiles:
 - .profile

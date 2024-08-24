@@ -40,7 +40,7 @@ cd dotfiles-new
 - Bootstraps a new system with common applications, settings, and dotfiles.
 
 ```sh
-ansible-playbook bootstrap.yml
+ansible-playbook -i hosts --ask-become-pass bootstrap.yml
 ```
 
 # Role specific variables
