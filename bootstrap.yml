@@ -25,12 +25,12 @@
       import_role:
         name: nvim
     
-    - name: Rust
-      become: true
-      tags: rust
-      import_role:
-        name: fubarhouse.rust
-      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Pop!_OS"
+    # - name: Rust
+    #   become: true
+    #   tags: rust
+    #   import_role:
+    #     name: fubarhouse.rust
+    #   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Pop!_OS"
 
     - name: Go
       tags: go
